@@ -1,0 +1,4 @@
+data_carregamento,hora_carregamento,cidade_origem,pais_origem,data_entrega,hora_entrega,cidade_destino,pais_destino,observacoes
+2026-06-30,11:00,Santiago de Compostela,ES,2026-06-30,17:00,Benavente,ES,Primeira entrega na TSR
+2026-07-03,14:00,Ourense,ES,2026-07-07,08:00,Ibiza,ES,Cidade da carga imprecisa. Sei apenas que foi em Ourense
+2026-07-10,12:00,Barcelona,ES,2026-07-17,22:00,Berlin,DE,Carga entregue em Carrozado carregado em Madrid. Foi uma troca de condutores. Levei uma furgoneta para trocar com o condutor que necessitava retorno para residencia

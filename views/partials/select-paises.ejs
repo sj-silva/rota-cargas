@@ -1,0 +1,12 @@
+<% const listaPaises = [
+  ['ES','🇪🇸 Espanha'], ['PT','🇵🇹 Portugal'], ['FR','🇫🇷 França'],
+  ['DE','🇩🇪 Alemanha'], ['IT','🇮🇹 Itália'], ['GB','🇬🇧 Reino Unido'],
+  ['NL','🇳🇱 Países Baixos'], ['BE','🇧🇪 Bélgica'], ['CH','🇨🇭 Suíça'],
+  ['AT','🇦🇹 Áustria'], ['LU','🇱🇺 Luxemburgo'], ['AD','🇦🇩 Andorra'],
+  ['MA','🇲🇦 Marrocos']
+]; %>
+<select name="<%= nome %>" required>
+  <% listaPaises.forEach(([sigla, label]) => { %>
+    <option value="<%= sigla %>" <%= selecionado === sigla ? 'selected' : '' %>><%= label %></option>
+  <% }) %>
+</select>

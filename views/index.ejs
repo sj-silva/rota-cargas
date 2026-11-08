@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<% const regiao = new Intl.DisplayNames(['pt'], { type: 'region' }); %>
+
+<h1>Registros de Cargas</h1>
+
+<% if (cargas.length === 0) { %>
+  <p class="empty">Ainda não há registos. Clica em <strong>+ Nova Carga</strong>.</p>
+<% } else { %>
+
+<table class="tabela">
+  <thead>
+    <tr>
+      <th>Carregamento</th>
+      <th>Entrega</th>
+      <th>Rota</th>
+      <th>Observações</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cargas.forEach(c => { %>
+      <tr>
+        <td>
+          <strong><%= new Date(c.data_carregamento).toLocaleDateString('pt-PT') %></strong><br>
+          <span class="hora"><%= c.hora_carregamento %></span><br>
+          <small><%= c.cidade_origem %>, <%= regiao.of(c.pais_origem) %> (<%= c.pais_origem %>)</small>
+        </td>
+        <td>
+          <strong><%= new Date(c.data_entrega).toLocaleDateString('pt-PT') %></strong><br>
+          <span class="hora"><%= c.hora_entrega %></span><br>
+          <small><%= c.cidade_destino %>, <%= regiao.of(c.pais_destino) %> (<%= c.pais_destino %>)</small>
+        </td>
+        <td class="rota"><%= c.cidade_origem %> → <%= c.cidade_destino %></td>
+        <td class="obs"><%= c.observacoes || '-' %></td>
+        <td class="acoes">
+          <a href="/<%= c.id %>/editar" class="btn btn-edit">Editar</a>
+          <form action="/<%= c.id %>?_method=DELETE" method="POST" style="display:inline">
+            <button type="submit" class="btn btn-delete"
+              onclick="return confirm('Apagar esta carga?')">Apagar</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% } %>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<h1>Nova Carga</h1>
+
+<% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+
+<form action="/" method="POST" class="form">
+
+  <fieldset>
+    <legend>🟢 Carregamento (Origem)</legend>
+    <label>Data <input type="date" name="data_carregamento" required value="<%= carga?.data_carregamento || '' %>"></label>
+    <label>Hora <input type="time" name="hora_carregamento" required value="<%= carga?.hora_carregamento || '' %>"></label>
+    <label>Cidade origem <input type="text" name="cidade_origem" required placeholder="Ex: Santiago de Compostela" value="<%= carga?.cidade_origem || '' %>"></label>
+    <label>País origem <%- include('partials/select-paises', { nome: 'pais_origem', selecionado: carga?.pais_origem || 'ES' }) %></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>🔴 Entrega (Destino)</legend>
+    <label>Data <input type="date" name="data_entrega" required value="<%= carga?.data_entrega || '' %>"></label>
+    <label>Hora <input type="time" name="hora_entrega" required value="<%= carga?.hora_entrega || '' %>"></label>
+    <label>Cidade destino <input type="text" name="cidade_destino" required placeholder="Ex: Benavente" value="<%= carga?.cidade_destino || '' %>"></label>
+    <label>País destino <%- include('partials/select-paises', { nome: 'pais_destino', selecionado: carga?.pais_destino || 'ES' }) %></label>
+  </fieldset>
+
+  <label class="full">
+    Observações
+    <textarea name="observacoes" rows="4" placeholder="Ex: Carga da Malaska para Bershka. Centro comercial. Atraso no carregamento..."><%= carga?.observacoes || '' %></textarea>
+  </label>
+
+  <div class="form-acoes">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="/" class="btn btn-cancel">Cancelar</a>
+  </div>
+</form>
+
+<%- include('partials/footer') %>
