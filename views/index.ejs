@@ -1,8 +1,15 @@
 <%- include('partials/header') %>
 <% const regiao = new Intl.DisplayNames(['pt'], { type: 'region' }); %>
 
-<h1>Registros de Cargas</h1>
-
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+  <h1 style="margin: 0;">Registro de Cargas</h1>
+  
+  <form action="/imprimir" method="GET" target="_blank" style="display: flex; gap: 10px; align-items: center;">
+    <label style="font-size: 14px; font-weight: 600;">Filtrar relatório:</label>
+    <input type="month" name="mes" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+    <button type="submit" class="btn btn-print">🖨️ Gerar PDF</button>
+  </form>
+</div>
 <% if (cargas.length === 0) { %>
   <p class="empty">Ainda não há registos. Clica em <strong>+ Nova Carga</strong>.</p>
 <% } else { %>

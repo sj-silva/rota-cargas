@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório - <%= tituloMes %></title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #000; background: #fff; margin: 0; padding: 20px; font-size: 12px; }
+    .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+    .header h1 { margin: 0; font-size: 22px; }
+    .header h2 { margin: 5px 0 10px; font-size: 16px; color: #555; font-weight: normal; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #000; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background-color: #f0f0f0; font-weight: bold; font-size: 11px; text-transform: uppercase; }
+    .obs { font-size: 11px; }
+    
+    .no-print { text-align: right; margin-bottom: 15px; }
+    @media print {
+      .no-print { display: none; }
+      body { padding: 0; }
+      @page { margin: 1cm; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print">
+    <button onclick="window.print()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #2a7de1; color: white; border: none; border-radius: 5px;">
+      🖨️ Imprimir ou Guardar como PDF
+    </button>
+  </div>
+
+  <div class="header">
+    <h1>Relatório de Cargas</h1>
+    <h2><%= tituloMes %></h2>
+    <p style="margin: 5px 0 0; color: #555;">Gerado em: <%= new Date().toLocaleDateString('pt-PT') %> às <%= new Date().toLocaleTimeString('pt-PT') %></p>
+  </div>
+
+  <% if (cargas.length === 0) { %>
+    <p style="text-align: center; font-size: 16px; margin-top: 30px;">Nenhuma viagem encontrada para este período.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Carga</th>
+          <th>Origem</th>
+          <th>Data Entrega</th>
+          <th>Destino</th>
+          <th>Observações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cargas.forEach(c => { %>
+          <tr>
+            <td><%= new Date(c.data_carregamento).toLocaleDateString('pt-PT') %> <br> <%= c.hora_carregamento %></td>
+            <td><%= c.cidade_origem %>, <%= c.pais_origem %></td>
+            <td><%= new Date(c.data_entrega).toLocaleDateString('pt-PT') %> <br> <%= c.hora_entrega %></td>
+            <td><%= c.cidade_destino %>, <%= c.pais_destino %></td>
+            <td class="obs"><%= c.observacoes || '-' %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" style="text-align: right; font-weight: bold; background-color: #f9f9f9;">
+            Total: <%= cargas.length %> viagem(ns)
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  <% } %>
+
+</body>
+</html>
