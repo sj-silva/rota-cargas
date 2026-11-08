@@ -62,8 +62,8 @@
       <tfoot>
         <tr>
           <td colspan="5" style="text-align: right; font-weight: bold; background-color: #f9f9f9;">
-            Total: <%= cargas.length %> viagem(ns)
-          </td>
+  Total: <%= cargas.length %> <%= cargas.length === 1 ? 'viagem' : 'viagens' %>
+</td>
         </tr>
       </tfoot>
     </table>
